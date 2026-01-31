@@ -6,7 +6,7 @@ argument-hint: "[时序图代码]"
 allowed-tools: Read, Write, Bash, question
 ---
 
-# 时序图生成器
+## 你的技能
 
 将 Mermaid 时序图代码渲染为 PNG 图片，支持自定义保存目录。
 

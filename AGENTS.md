@@ -23,31 +23,27 @@
 
 ## 开发工作流
 
-在开发 Skills 和 Commands 的过程中，使用斜杠命令执行任务时，系统会按照以下优先级查找和执行：
+在开发 Skills 和 Commands 的过程中，系统根据指令前缀识别任务类型：
 
+### 指令识别规则
+
+- **## 你的任务**：说明你是在执行一个具体的任务，直接按照要求立即执行任务
+- **## 你的技能**：说明是关于技能（skill）的加载和运用
+
+### 工作流示例
+
+**执行任务：**
 ```
-1. 优先执行 .opencode/commands/{command-name}.md 中的命令
-2. 如果 command 不存在，检查 .opencode/skills/{skill-name}/SKILL.md 中是否有对应 skill
-3. 确认是否需要创建新的 skill
+## 你的任务
+创建一个代码格式化工具
+# → 按照任务要求直接执行
 ```
 
-**工作流示例：**
-```bash
-# 场景 1：执行已存在的 command
-/intro
-# → 直接执行 .opencode/commands/intro.md
-
-# 场景 2：执行已存在的 skill
-/blog-writer "测试主题"
+**运用技能：**
+```
+## 你的技能
+加载 blog-writer 技能
 # → 执行 .opencode/skills/blog-writer/SKILL.md
-
-# 场景 3：创建新 command（不存在时）
-/new-command "创建一个代码格式化工具"
-# → 提示创建新 command 文件
-
-# 场景 4：创建新 skill（不存在时）
-/my-new-skill
-# → 确认是否创建新 skill
 ```
 
 **开发提示：**

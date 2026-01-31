@@ -4,7 +4,8 @@ description: 智能博客写作助手。支持从头创作、提供素材创作�
 argument-hint: "[文章主题] --type=[类型] --style=[风格] --words=[字数] --input=[已有内容文件]"
 allowed-tools: Read, Glob, Grep, question, Write
 ---
-# 博客写作助手
+
+## 你的技能
 
 专业博客文章写作助手，支持交互式配置，智能学习示例风格，输出高质量文章。
 
