@@ -1,4 +1,14 @@
-根据用户提供的功能描述，自动提炼 command 名称，在 `.opencode/commands/` 目录下创建简单的 `.md` 文件。
+---
+agent: build
+description: 创建一个新的 Agent command
+---
+
+<CommandDescription>
+  $ARGUMENTS
+</CommandDescription>
+
+## 你的任务
+根据用户提供的功能描述 {CommandDescription}，自动提炼 command 名称，在 `.opencode/commands/` 目录下创建简单的 `.md` 文件。
 
 ## 执行流程
 
@@ -38,26 +48,40 @@
 
 **根据功能描述自动生成完整的命令指令**：
 
-- 分析用户的功能描述，提炼核心任务目标
+- 定义命令元数据，固定格式如下：
+  ```markdown
+  ---
+  agent: build
+  description: {提炼的新建命令简要描述}
+  ---
+  ```
+- 获取用户输入的参数（如果存在）
+- 分析用户输入的功能描述，提炼核心任务目标
 - 设计执行步骤和流程（如：输入处理、核心逻辑、输出格式）
 - 推荐适用的工具组合（Read/Write/Glob/Grep/Bash/question 等）
 - 定义预期的输出或成果
+- 提供示例用法，展示命令的实际使用场景
+- 提供规范要求（可选）
 
 **生成命令文件结构**：
 
 ```markdown
 ---
+agent: build
 description: {提炼的简要描述}
-argument-hint: "[可选参数提示]"  # 如需要参数
 ---
 
-{详细的功能指令描述，包括：
-- 命令用途概述
-- 执行步骤（1、2、3...）
-- 使用的工具及用途
-- 输入/输出规范
-- 示例用法
-}
+## 你的任务
+详细的任务描述和目标
+
+## 执行流程
+详细的执行行流程和逻辑
+
+## 使用示例
+如何使用该命令的示例，比如 /new-command ***
+
+## 规范要求（可选）
+如果用户明确提出规范要求，一定要参考，如果没有明确提出规范要求，智能补充必要的规范描述和要求。
 ```
 
 **目标路径**：`.opencode/commands/{command-name}.md`
@@ -89,18 +113,9 @@ argument-hint: "[可选参数提示]"  # 如需要参数
 - 文件扩展名为 `.md`
 
 ### 文件结构
-
-```markdown
----
-description: 命令的一句话描述
----
-
-具体的功能说明或执行逻辑
-```
+参考`执行流程`第3步中的文件结构。
 
 ### 质量标准
 - 命令名称使用 kebab-case（小写字母 + 连字符）
 - 描述简洁明了
 - 文件位于正确的目录（.opencode/commands/）
-
-现在开始创建新 command。

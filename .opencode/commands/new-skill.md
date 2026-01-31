@@ -1,11 +1,21 @@
-基于用户提供的功能描述，自动提炼技能名称和功能说明，经过用户确认后创建技能文件。
+---
+agent: build
+description: 创建新的Agent skill
+---
+
+<SkillDescription>
+  $ARGUMENTS
+</SkillDescription>
+
+## 你的任务
+基于用户提供的功能描述{SkillDescription}，自动提炼技能名称和功能说明，经过用户确认后创建技能文件。
 
 ## 执行流程
 
 ### 1. 获取功能描述
 
-**检查用户是否提供描述参数**（通过 $ARGUMENTS）：
-- 已提供 → 使用提供的描述作为功能说明
+**检查用户是否提供描述参数 {SkillDescription}**：
+- 已提供 → 使用提供的{SkillDescription}作为功能说明
 - 未提供 → 使用 `question` 工具提示用户输入功能描述
 
 ### 2. 提炼技能信息

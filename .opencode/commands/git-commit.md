@@ -1,10 +1,20 @@
-分析当前工作区代码变更，智能生成符合 Conventional Commits 规范的英文提交信息，并帮用户执行git commit，执行前需要跟用户确认。
+---
+agent: build
+description: 执行 git commit 来提交当前工作区的变更
+---
+
+<CommitMessage>
+  $ARGUMENTS
+</CommitMessage>
+
+## 你的任务
+分析当前工作区代码变更，智能生成符合 Conventional Commits 规范的英文提交信息，并帮用户执行git commit，执行前一定要让用户确认。
 
 ## 执行流程
 
 ### 1. 获取用户提示（可选）
 
-**检查是否提供参数**（通过 `$ARGUMENTS`）：
+**检查是否提供 {CommitMessage}**：
 - 已提供 → 作为提交信息生成的参考提示
 - 未提供 → 完全基于代码变更自动分析
 
@@ -39,12 +49,11 @@ git diff HEAD
 - 测试相关 → `test`
 
 ### 4. 生成提交信息
-
-**结合用户提示（如有）和变更分析**：
+**如果用户在斜杠命令参数后填充了{CommitMessage}，就使用{CommitMessage}作为参考信息，否则就为用户智能生成。**
 
 **信息格式**：
 ```
-<type>: <英文描述>
+<type>: {CommitMessage}
 ```
 
 **生成规则**：
@@ -75,7 +84,7 @@ git diff HEAD
 ```
 
 **处理用户选择**：
-- **确认提交** → 执行 `git commit -m "message"`
+- **确认提交** → 执行 `git commit -m "{CommitMessage}"`
 - **修改信息** → 使用 `question` 工具让用户输入新信息，然后重新确认
 - **取消** → 结束流程，不执行提交
 
@@ -83,14 +92,14 @@ git diff HEAD
 
 **执行命令**：
 ```bash
-git commit -m "{message}"
+git commit -m "{CommitMessage}"
 ```
 
 **成功反馈**：
 ```
 ✅ Commit 成功！
 
-提交信息：{message}
+提交信息：{CommitMessage}
 提交哈希：{commit-hash}
 ```
 
@@ -101,9 +110,9 @@ git commit -m "{message}"
 ## 使用示例
 
 ```
-/commit                          # 完全自动分析
-/commit "添加用户认证模块"       # 提供提示辅助分析
-/commit "fix memory leak"        # 直接提供英文描述
+/git-commit                          # 完全自动分析
+/git-commit "添加用户认证模块"          # 提供提示辅助分析
+/git-commit "fix memory leak"        # 直接使用提供英文描述
 ```
 
 ## 规范要求

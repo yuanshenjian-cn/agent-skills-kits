@@ -1,12 +1,22 @@
+---
+agent: build
+description: 修改已有的Agent Skill
+---
+
+<SkillName>
+  $ARGUMENTS
+</SkillName>
+
+## 你的任务
 修改现有的 Claude Code/OpenCode skill。支持通过参数指定 skill，或从列表中选择，然后根据用户的修改描述智能更新 skill 文件。
 
 ## 执行流程
 
 ### 1. 获取目标 Skill
 
-**检查用户是否提供 skill 名称参数**（通过 $ARGUMENTS）：
+**检查用户是否提供 skill 名称参数{SkillName}** ：
 - **已提供** → 使用该名称作为目标 skill
-  - 验证 skill 是否存在（检查 `.opencode/skills/{skill-name}/SKILL.md`）
+  - 验证 skill 是否存在（检查 `.opencode/skills/{SkillName}/SKILL.md`）
   - 存在 → 进入步骤 2
   - 不存在 → 提示 skill 不存在，列出所有可用 skill 让用户重新选择
 
@@ -14,7 +24,7 @@
   - 使用 `Glob` 扫描 `.opencode/skills/**/SKILL.md`
   - 提取所有 skill 名称
   - 使用 `question` 工具展示选择列表
-  - 用户选择后进入步骤 2
+  - 用户选择后进入步骤 2，{SkillName}则为用户所选择的值
 
 **Skill 列表示例**：
 ```
@@ -38,7 +48,7 @@
 
 ### 3. 读取现有 Skill 文件
 
-**读取目标文件**：`.opencode/skills/{skill-name}/SKILL.md`
+**读取目标文件**：`.opencode/skills/{SkillName}/SKILL.md`
 
 **分析当前内容**：
 - Frontmatter 字段（description, argument-hint, allowed-tools 等）
@@ -68,7 +78,7 @@
 
 **向用户展示修改预览**：
 ```
-即将对 skill "{skill-name}" 进行以下修改：
+即将对 skill "{SkillName}" 进行以下修改：
 
 【修改摘要】
 - 修改了 frontmatter 中的 description

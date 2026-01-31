@@ -1,4 +1,10 @@
-帮助用户将本地的git commit push 到远程的git仓库，请严格按照流程工作。
+---
+agent: build
+description: 执行 git push 来向远程仓库推送本地的commit
+---
+
+## 你的任务
+帮助用户将本地的git commit push 到远程的git仓库，确保只推送当前分支的commits。
 
 ## 执行流程
 

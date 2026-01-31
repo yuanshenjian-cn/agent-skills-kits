@@ -48,8 +48,8 @@ allowed-tools: Read, Glob, Grep          # 可选：限制可用工具
 
 ```yaml
 ---
+agent: build
 description: 命令的一句话描述
-argument-hint: "[可选参数]"
 ---
 ```
 
