@@ -20,8 +20,10 @@ my-skill/
 ├── template.md           # 可选：Claude 填充的模板
 ├── examples/             # 可选：示例输出
 │   └── sample.md
-└── scripts/              # 可选：辅助脚本
-    └── helper.py
+└── scripts/              # 可选：辅助脚本，支持 Python、Shell、JavaScript
+    ├── helper.py
+    ├── tool.sh
+    └── generate.js
 ```
 
 ### SKILL.md 格式
@@ -100,6 +102,26 @@ description: 解释文件的功能和结构
 
 使用：`/explain-file src/main.py`
 
+## 执行流程
+
+创建新技能的步骤：
+
+1. **创建目录结构**
+   ```bash
+   mkdir -p .opencode/skills/my-skill/scripts
+   mkdir -p .opencode/skills/my-skill/examples
+   ```
+
+2. **编写 SKILL.md** - 技能核心指令
+
+3. **创建辅助脚本**（如需要）
+   - 放到 `scripts/` 目录下
+   - 不要直接放在技能根目录
+
+4. **添加示例和文档**（可选）
+   - `README.md` - 使用说明
+   - `examples/` - 示例文件
+
 ## 最佳实践
 
 1. **保持简洁**：SKILL.md 建议不超过 100 行
@@ -107,6 +129,7 @@ description: 解释文件的功能和结构
 3. **合理拆分**：详细材料放到单独文件（如 reference.md）
 4. **正确控制**：需手动控制的任务设置 `disable-model-invocation: true`
 5. **引用辅助文件**：在 SKILL.md 中用 `[reference.md](reference.md)` 引用
+6. **脚本放对位置**：辅助脚本必须放在 `scripts/` 子目录下
 
 ## 参考
 
