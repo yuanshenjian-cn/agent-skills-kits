@@ -1,8 +1,3 @@
----
-description: 智能项目分析与 README 生成助手。分析项目结构，识别项目类型，自动生成或更新专业的 README.md。仅在 Commands/Skills 集合项目中才列出可用命令和技能。
-agent: build
----
-
 分析项目结构，理解其类型和核心价值，生成专业的 README.md。如果文档已存在，则智能补充更新。
 
 **重要说明**：仅在 Commands/Skills 集合项目中，才在 README 中列出"可用命令"和"技能清单"。普通项目不显示这些章节。

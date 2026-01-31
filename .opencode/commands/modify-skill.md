@@ -1,8 +1,3 @@
----
-description: 修改现有 skill，支持选择 skill 并指定修改内容，智能更新 SKILL.md 文件
-argument-hint: "[skill-name]"
----
-
 修改现有的 Claude Code/OpenCode skill。支持通过参数指定 skill，或从列表中选择，然后根据用户的修改描述智能更新 skill 文件。
 
 ## 执行流程

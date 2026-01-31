@@ -1,8 +1,3 @@
----
-description: 根据用户描述创建新的 opencode command，自动提炼命令名称，在 .opencode/commands/ 目录下生成 md 文件
-argument-hint: "[功能描述]"
----
-
 根据用户提供的功能描述，自动提炼 command 名称，在 `.opencode/commands/` 目录下创建简单的 `.md` 文件。
 
 ## 执行流程
