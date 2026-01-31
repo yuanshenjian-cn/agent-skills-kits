@@ -1,9 +1,4 @@
----
-description: 分析代码变更，自动提炼英文 commit 信息，提交前与用户确认
-argument-hint: "[可选: 提交描述提示]"
----
-
-分析当前工作区代码变更，智能生成符合 Conventional Commits 规范的英文提交信息，执行前与用户确认。
+分析当前工作区代码变更，智能生成符合 Conventional Commits 规范的英文提交信息，并帮用户执行git commit，执行前需要跟用户确认。
 
 ## 执行流程
 
