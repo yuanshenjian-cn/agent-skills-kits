@@ -14,12 +14,12 @@ Agent Skills Kits 是一个开源的 AI 技能集合，旨在为 Claude Code 和
 
 ## 可用命令
 
-| 命令 | 描述 | 参数 |
-|------|------|------|
-| `/blog-writer` | 智能博客写作助手 | `[主题] --type=[类型] --style=[风格] --words=[字数]` |
-| `/ddd-coding-standards` | DDD 分层架构代码规范检查 | `[代码/问题描述]` |
-| `/sequence-diagram-generator` | 将 Mermaid 时序图转换为 PNG 图片 | `[时序图代码]` |
-| `/create-or-update-skill` | 创建或更新 Skill 文件的完整指南 | 无 |
+| 命令 | 描述 | 参数 | 类型 |
+|------|------|------|------|
+| `/blog-writer` | 智能博客写作助手 | `[主题] --type=[类型] --style=[风格] --words=[字数]` | Agent Command |
+| `/ddd-coding-standards` | DDD 分层架构代码规范检查 | `[代码/问题描述]` | Agent Command |
+| `/sequence-diagram-generator` | 将 Mermaid 时序图转换为 PNG 图片 | `[时序图代码]` | User Command |
+| `/create-or-update-skill` | 创建或更新 Skill 文件的完整指南 | `[技能名称]` | Agent Command |
 
 ## 技能清单
 
