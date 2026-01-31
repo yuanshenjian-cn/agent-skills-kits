@@ -14,7 +14,46 @@
 - **Commands** (`.opencode/commands/`)：AI 自动执行的命令
   - `intro` - 项目分析与 README 生成
   - `new-command` - 创建新 command
+  - `new-skill` - 创建新 skill
   - `modify-skill` - 修改现有 skill
+  - `git-commit` - 智能 git commit
+  - `git-push` - 推送到远程仓库
+  - `new-blog` - 快速创建博客
+  - `new-sequence-diagram` - 快速创建时序图
+
+## 开发工作流
+
+在开发 Skills 和 Commands 的过程中，使用斜杠命令执行任务时，系统会按照以下优先级查找和执行：
+
+```
+1. 优先执行 .opencode/commands/{command-name}.md 中的命令
+2. 如果 command 不存在，检查 .opencode/skills/{skill-name}/SKILL.md 中是否有对应 skill
+3. 确认是否需要创建新的 skill
+```
+
+**工作流示例：**
+```bash
+# 场景 1：执行已存在的 command
+/intro
+# → 直接执行 .opencode/commands/intro.md
+
+# 场景 2：执行已存在的 skill
+/blog-writer "测试主题"
+# → 执行 .opencode/skills/blog-writer/SKILL.md
+
+# 场景 3：创建新 command（不存在时）
+/new-command "创建一个代码格式化工具"
+# → 提示创建新 command 文件
+
+# 场景 4：创建新 skill（不存在时）
+/my-new-skill
+# → 确认是否创建新 skill
+```
+
+**开发提示：**
+- 创建或修改 command/skill 后，立即使用斜杠命令进行测试
+- 通过 `/git-commit` 和 `/git-push` 快速提交和推送代码
+- 使用 `/new-blog` 和 `/new-sequence-diagram` 快捷执行对应 skill
 
 ## 构建与验证
 
