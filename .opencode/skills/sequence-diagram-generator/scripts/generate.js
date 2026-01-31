@@ -14,6 +14,9 @@ const zlib = require('zlib');
 // 主函数
 async function main() {
   try {
+    // 从命令行参数获取输出目录（第一个参数）
+    const outputDir = process.argv[2] || '.';
+    
     // 从 stdin 读取代码
     let code = '';
     process.stdin.setEncoding('utf-8');
@@ -29,11 +32,17 @@ async function main() {
     
     console.log('正在生成时序图...');
     
+    // 确保输出目录存在
+    if (outputDir !== '.' && !fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+      console.log(`已创建目录: ${outputDir}`);
+    }
+    
     // 生成时间戳
     const timestamp = new Date().toISOString()
       .replace(/[:.]/g, '')
       .slice(0, 15);
-    const outputFile = `sequence_${timestamp}.png`;
+    const outputFile = path.join(outputDir, `sequence_${timestamp}.png`);
     
     // 使用 JSON API 方式 (更可靠)
     const imageBuffer = await generateViaJsonApi(code);

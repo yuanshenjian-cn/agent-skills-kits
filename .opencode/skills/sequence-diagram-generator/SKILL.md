@@ -1,14 +1,14 @@
 ---
 name: sequence-diagram-generator
-description: 将 Mermaid 时序图代码转换为 PNG/SVG 图片
+description: 将 Mermaid 时序图代码转换为 PNG/SVG 图片，支持自定义保存目录
 disable-model-invocation: true
 argument-hint: "[时序图代码]"
-allowed-tools: Read, Write, Bash, webfetch
+allowed-tools: Read, Write, Bash, question
 ---
 
 # 时序图生成器
 
-将 Mermaid 时序图代码渲染为 PNG 图片。
+将 Mermaid 时序图代码渲染为 PNG 图片，支持自定义保存目录。
 
 ## 使用方式
 
@@ -17,18 +17,35 @@ allowed-tools: Read, Write, Bash, webfetch
 /sequence-diagram-generator
 ```
 
-然后粘贴时序图代码。
+然后按提示操作。
 
 ## 执行流程
 
-1. 接收用户粘贴的时序图代码
-2. 调用 `scripts/generate.js` 脚本，使用 Kroki 在线服务生成 PNG
-3. 保存图片到当前工作目录
+1. **询问保存目录**
+   - 提示语："请输入时序图保存目录（直接按 Enter 使用默认目录：./sequence_diagrams）："
+   - 使用 `question` 工具收集用户输入
+   - 如果用户输入为空，则使用默认目录 `./sequence_diagrams`
+
+2. **提示用户粘贴代码**
+   - 显示提示："请直接粘贴时序图代码（Mermaid 格式），粘贴完成后按 Enter："
+   - 直接等待用户粘贴代码（不需要额外的 question 步骤）
+
+3. **生成时序图**
+   - 调用 `scripts/generate.js` 脚本，将用户指定的目录作为参数传递
+   - 脚本会自动创建目录（如果不存在）
+   - 生成 PNG 图片并保存到指定目录
+
+4. **完成提示**
+   - 显示生成的文件路径和大小
 
 ## 辅助脚本
 
-- `scripts/generate.js` - Node.js 生成脚本，使用 Kroki.io API
-- `scripts/generate.sh` - Bash 备用脚本
+- `scripts/generate.js [output_directory]` - Node.js 生成脚本
+  - 第一个参数：输出目录（可选，默认为当前目录）
+  - 从 stdin 读取 Mermaid 代码
+  - 使用 Kroki.io API 生成 PNG
+  
+- `scripts/generate.sh` - Bash 备用脚本（用法相同）
 
 ## 技术方案
 
@@ -43,7 +60,28 @@ allowed-tools: Read, Write, Bash, webfetch
 
 - 格式：PNG
 - 文件名：`sequence_YYYYMMDD_HHMMSS.png`
-- 位置：当前工作目录
+- 位置：用户指定的目录（默认为 `./sequence_diagrams`）
+- 如果目录不存在，会自动创建
+
+## 示例
+
+**交互示例：**
+```
+/sequence-diagram-generator
+
+请输入时序图保存目录（直接按 Enter 使用默认目录：./sequence_diagrams）：
+[用户按 Enter 或输入自定义路径]
+
+请直接粘贴时序图代码（Mermaid 格式），粘贴完成后按 Enter：
+sequenceDiagram
+    actor A as 用户
+    participant B as 系统
+    A->>B: 请求数据
+    B-->>A: 返回结果
+[按 Enter]
+
+✓ 时序图已生成: sequence_diagrams/sequence_20260131_103045.png (15.2 KB)
+```
 
 ## 代码示例
 
