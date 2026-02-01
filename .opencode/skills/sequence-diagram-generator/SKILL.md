@@ -8,23 +8,15 @@ allowed-tools: Read, Write, Bash, question
 
 ## 你的技能
 
-将 Mermaid 时序图代码渲染为 PNG 图片，支持自定义保存目录。
+你能生成时序图，将 Mermaid 时序图代码渲染为 PNG 图片，并支持自定义保存目录。
 
-## 使用方式
-
-用户调用：
-```
-/sequence-diagram-generator
-```
-
-然后按提示操作。
 
 ## 执行流程
 
 1. **询问保存目录**
-   - 提示语："请输入时序图保存目录（直接按 Enter 使用默认目录：./sequence_diagrams）："
+   - 提示语："请输入时序图保存目录（直接按 Enter 使用默认目录：.skill-outputs/sequence-diagram-generator/）："
    - 使用 `question` 工具收集用户输入
-   - 如果用户输入为空，则使用默认目录 `./sequence_diagrams`
+   - 如果用户输入为空，则使用默认目录 `.skill-outputs/sequence-diagram-generator/`
 
 2. **提示用户粘贴代码**
    - 显示提示："请直接粘贴时序图代码（Mermaid 格式），粘贴完成后按 Enter："
@@ -60,7 +52,7 @@ allowed-tools: Read, Write, Bash, question
 
 - 格式：PNG
 - 文件名：`sequence_YYYYMMDD_HHMMSS.png`
-- 位置：用户指定的目录（默认为 `./sequence_diagrams`）
+- 位置：用户指定的目录（默认为 `.skill-outputs/sequence-diagram-generator/`）
 - 如果目录不存在，会自动创建
 
 ## 示例
@@ -69,7 +61,7 @@ allowed-tools: Read, Write, Bash, question
 ```
 /sequence-diagram-generator
 
-请输入时序图保存目录（直接按 Enter 使用默认目录：./sequence_diagrams）：
+请输入时序图保存目录（直接按 Enter 使用默认目录：.skill-outputs/sequence-diagram-generator/）：
 [用户按 Enter 或输入自定义路径]
 
 请直接粘贴时序图代码（Mermaid 格式），粘贴完成后按 Enter：
@@ -80,7 +72,7 @@ sequenceDiagram
     B-->>A: 返回结果
 [按 Enter]
 
-✓ 时序图已生成: sequence_diagrams/sequence_20260131_103045.png (15.2 KB)
+✓ 时序图已生成: .skill-outputs/sequence-diagram-generator/sequence_20260131_103045.png (15.2 KB)
 ```
 
 ## 代码示例

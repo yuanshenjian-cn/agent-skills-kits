@@ -1,6 +1,6 @@
 ---
 agent: build
-description: 执行 Agent Skill：sequence-diagram-generator
+description: 使用 Agent Skill：sequence-diagram-generator
 ---
 
-请立即执行 `sequence-diagram-generator` skill来创建时序图。
+请立即使用 `sequence-diagram-generator` skill 来创建时序图。
